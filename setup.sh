@@ -4,7 +4,7 @@
 sudo apt-get install -y libbluetooth-dev bluetooth python2.7-dev
 
 # Install All the python packages (Update as necessary)
-pip install -r requirements.txt
+sudo pip install -r requirements.txt
 
 # Download from source and install
 git clone https://github.com/akloster/python-mindwave
