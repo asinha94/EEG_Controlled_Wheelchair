@@ -13,4 +13,9 @@ sudo python setup.py install
 popd
 rm -rf python-mindwave
 
+# If you have trouble connecting your device to the MindWave mobile copy hte pincodes file into
+# /usr/var/lib/bluetooth/${YOUR_BLUETOOTH_MAC_ADDRESS}/
+# Then restart your bluetooth service
+# This is strictly Debian-variants only
+
 
