@@ -9,7 +9,7 @@ sudo pip install -r requirements.txt
 # Download from source and install
 git clone https://github.com/akloster/python-mindwave
 pushd python-mindwave
-sudo python setup.py install
+python setup.py install
 popd
 rm -rf python-mindwave
 
