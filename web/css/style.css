@@ -1,7 +1,41 @@
 body{
 	background-color: #ffeedd;
+	color: #82735d;
+	font-family: 'Assistant', sans-serif;
+	text-align: center;
+	font-size: 175%;
+}
+.intro-block{
+	height: 500px;
+	background: url("../assets/img/hero.jpg");
+	background-size: cover;
+
 }
 .title{
 	text-align: center;
+	width: 500px;
+	border: 1px solid grey;
+	border-radius: 2px;
+	display: block;
+	margin: 0 auto;
+	margin-top: 5%;
+	box-shadow: 5px 5px 5px #888888;
+}
+.buttons{
+	margin-top: 25%;
+}
+.button{
+	height: 125px;
+	border: 1px solid grey;
+	border-radius: 4px;
+	text-align: center;
+	vertical-align: middle;
+	line-height: 125px; 
+	background-color: #fde4bf;
+	transition: background-color 0.4s;
+}
+.button:hover{
+	color: white;
+	background-color: #3c372f;
 }
 
