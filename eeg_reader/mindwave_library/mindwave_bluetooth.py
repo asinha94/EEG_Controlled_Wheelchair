@@ -3,6 +3,10 @@ from bluetooth.btcommon import BluetoothError
 import json
 import time
 
+# Constants
+AUTOCONNECT_CODE = "\xc2"
+DISCONNECT_CODE = "\xc2"
+
 def connect_bluetooth_addr(addr):
     for i in range(5):
         if i > 0:
@@ -11,10 +15,10 @@ def connect_bluetooth_addr(addr):
         try:
             sock.connect((addr, 1))
             sock.setblocking(False)
-            return sock
+            return (sock, addr)
         except BluetoothError, e:
             print e
-    return None
+    return (None, None)
 
 def connect_magic():
     """ Tries to connect to the first MindWave Mobile it can find.
@@ -32,4 +36,11 @@ def connect_magic():
         if name == "MindWave Mobile":
             print "found"
             return (connect_bluetooth_addr(addr), addr)
-    return (None, "")
+    return (None, None)
+
+def autoconnect(bluetooth_socket):
+    """Assumes that the bluetooth socket is attached to the mindwave"""
+    bluetooth_socket.send(AUTOCONNECT_CODE)
+
+def disconnect(bluetooth_socket):
+    bluetooth_socket.send(DISCONNECT_CODE)

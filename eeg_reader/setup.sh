@@ -6,3 +6,9 @@ sudo apt-get install -y libbluetooth-dev bluetooth python2.7-dev bluez
 # Install All the python packages (Update as necessary)
 sudo pip install -r requirements.txt
 
+# In my case because I downgraded my bluetooth, the bluetooth gui got uninstalled. So for some reason I need to turn it on manually like so
+
+# sudo rfkill unblock bluetooth
+# sudo hciconfig hci0 up
+# 
+
