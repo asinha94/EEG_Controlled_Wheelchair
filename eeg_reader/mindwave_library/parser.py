@@ -1,7 +1,6 @@
 import struct
 from time import time
 from numpy import mean # Remove?
-import serial # TODO: Remove?
 import mindwave_bluetooth
 """
 

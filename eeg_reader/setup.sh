@@ -10,5 +10,5 @@ sudo pip install -r requirements.txt
 
 # sudo rfkill unblock bluetooth
 # sudo hciconfig hci0 up
-# 
+# hciconfig hci0 XX:XX:XX:XX:XX:XX connect 
 
