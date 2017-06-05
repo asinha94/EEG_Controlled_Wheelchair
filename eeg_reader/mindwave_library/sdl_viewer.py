@@ -3,6 +3,7 @@ from numpy import *
 from pygame.locals import *
 import scipy
 from pyeeg import bin_power
+from time import sleep
 pygame.init()
 
 fpsClock= pygame.time.Clock()
@@ -13,6 +14,8 @@ pygame.display.set_caption("Mindwave Viewer")
 from parser import Parser
 
 p = Parser()
+p.connect("A0:E6:F8:F7:B9:58")
+sleep(1)
 
 blackColor = pygame.Color(0,0,0)
 redColor = pygame.Color(255,0,0)
@@ -38,6 +41,7 @@ attention_img = font.render("Attention", False, redColor)
 record_baseline = False
 
 while True:
+        sleep(1)
 	p.update()
 	window.blit(background_img,(0,0))
 	if p.sending_data:

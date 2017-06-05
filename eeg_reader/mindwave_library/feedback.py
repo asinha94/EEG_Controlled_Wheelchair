@@ -3,9 +3,10 @@ from numpy import *
 from pygame.locals import *
 import scipy
 from pyeeg import bin_power
-from time import time
+from time import time, sleep
 fpsClock= pygame.time.Clock()
 from random import random, choice
+
 class FeedbackTask:
 	def __init__(self):
 		font = pygame.font.Font("freesansbold.ttf",20)
@@ -160,6 +161,7 @@ def feedback_menu(window,p):
 			window.blit(img, (400,y))
 			y+= img.get_height()
 		p.update()
+                sleep(1)
 		pygame.display.update()
 		for event in pygame.event.get():
 			if event.type==QUIT:
@@ -180,6 +182,7 @@ def start_session(Task):
 	while not quit:
 		window.fill(pygame.Color(0,0,0))
 		p.update()
+                sleep(2)
 		for event in pygame.event.get():
 			if event.type==QUIT:
 				pygame.quit()
@@ -203,5 +206,7 @@ if __name__=="__main__":
 
 	from parser import Parser
 	p = Parser()
+        p.connect("A0:E6:F8:F7:B9:58")
+        sleep(3)
 	feedback_menu(window, p)
 
