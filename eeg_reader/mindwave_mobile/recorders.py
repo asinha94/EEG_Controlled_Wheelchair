@@ -1,7 +1,6 @@
 import struct
-from time import time
+import time
 from numpy import mean # Remove?
-import mindwave_bluetooth
 
 class recorders:
     def __init__(self):

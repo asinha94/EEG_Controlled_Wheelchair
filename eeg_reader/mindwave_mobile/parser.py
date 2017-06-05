@@ -1,11 +1,7 @@
 import struct
 from time import time
 from numpy import mean # Remove?
-import mindwave_bluetooth
 from recorders import recorders
-
-dongle_state = None
-DONGLE_STANDBY= "Standby"
 
 class Parser:
     def __init__(self, record_readings=True):
@@ -19,32 +15,18 @@ class Parser:
         self.current_spectrum = []
         self.sending_data = False
         self.state ="initializing"
-        self.device_connected = False
         self.recorder = recorders()
 
         if record_readings:
             self.recorder.start_raw_serial_recording()
-            self.
-            
+            self.recorder.start_esense_recording()
+            self.recorder.start_raw_data_recording()
 
-    def connect(self, mac_address=None):
-        if mac_address is None:
-            self.mindwaveMobileSocket, self.address = mindwave_bluetooth.connect_magic()
-        else:
-            self.mindwaveMobileSocket, self.address = mindwave_bluetooth.connect_bluetooth_addr(mac_address)
-
-            if self.mindwaveMobileSocket is not None:
-                self.device_connected = True
-            
-    def update(self):
-        bytes = self.mindwaveMobileSocket.recv(1000)
-        for b in bytes:
-            self.file_handle.write("%s\n" % hex(ord(b)))
-            self.parser.send(ord(b))    # Send each byte to the generator
-
-    def write_serial(self, string):
-        self.mindwaveMobileSocket.send(string)
-    
+    def parse(self, data):
+        #bytes = self.mindwaveMobileSocket.recv(1000)
+        for byte in data:
+            self.recorder.write_raw_serial(byte)
+            self.parser.send(ord(byte))    # Send byte to the generator
 
     def run(self):
         """
@@ -64,9 +46,9 @@ class Parser:
                     packet_code = yield
                     if packet_code == 0xd4:
                         # standing by
-                        self.dongle_state= "standby"
+                        self.state= "standby"
                     elif packet_code == 0xd0:
-                        self.dongle_state = "connected"
+                        self.state = "connected"
                     else:
                         self.sending_data = True
                         left = packet_length-2
@@ -80,9 +62,7 @@ class Parser:
                                 self.raw_values.append(value)
                                 if len(self.raw_values)>self.buffer_len:
                                     self.raw_values = self.raw_values[-self.buffer_len:]
-                                
                                 left-=2
-                                
 
                             elif packet_code == 0x02: # Poor signal
                                 a = yield
