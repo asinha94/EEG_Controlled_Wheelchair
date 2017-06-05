@@ -29,8 +29,6 @@ class MindwaveBluetooth:
                 self.bluetooth_socket = sock
                 self.connected = True
                 break
-            finally:
-                time.sleep(1)
 
     def connect_magic(self):
         """ Tries to connect to the first MindWave Mobile it can find"""
@@ -50,7 +48,10 @@ class MindwaveBluetooth:
         DISCONNECT_CODE = "\xc2"
         self.bluetooth_socket.send(DISCONNECT_CODE)
 
-    def update(self, byte_size=1000):
+    def close(self):
+        self.bluetooth_socket.close()
+
+    def update(self, byte_size=500):
         data = self.bluetooth_socket.recv(byte_size)
         self.parser.parse(data)
 

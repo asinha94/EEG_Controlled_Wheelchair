@@ -1,6 +1,5 @@
 import struct
 from time import time
-from numpy import mean # Remove?
 from recorders import recorders
 
 class Parser:
