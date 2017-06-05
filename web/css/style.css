@@ -5,6 +5,11 @@ body{
 	text-align: center;
 	font-size: 175%;
 }
+h1{
+	font-family: 'Playfair Display', serif;
+	font-size: 300%;
+	margin: 20px 0;
+}
 .intro-block{
 	height: 500px;
 	background: url("../assets/img/hero.jpg");
@@ -33,9 +38,20 @@ body{
 	line-height: 125px; 
 	background-color: #fde4bf;
 	transition: background-color 0.4s;
+	cursor: pointer;
 }
 .button:hover{
 	color: white;
 	background-color: #3c372f;
 }
-
+.team{
+	margin-top: 5%;
+	padding: 5% 0;
+	background-color: #e4e1cc;
+}
+.team-member{
+	border: 1px solid #ececec;
+	border-radius: 2px;
+	height: 200px;
+	margin: 1% 5%;;	
+}
