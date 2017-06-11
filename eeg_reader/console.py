@@ -1,3 +1,4 @@
+#!/usr/bin/python
 import mindwave_mobile.mindwave as mw
 from bluetooth.btcommon import BluetoothError
 from time import sleep
@@ -20,18 +21,24 @@ def main():
     while True:
         try:
             mindwave.update()
-        except BluetoothError:
-            print("Sleeping for 1s")
+        except BluetoothError, e:
+            print e
+            print("Sleeping. Hoping the error sorts itself out")
             sleep(1)
         except KeyboardInterrupt:
-            mindwave.close()
-            
+            # Only catchthing this so we can break and close
+            # If you dont close you might have to power cycle
+            # before you can connect again
+            break
     
         # Print all the current values
-        print("Blink Strength: %s" % str(mindwave.get_blink_strength_value()))
+        #print("Blink Strength: %s" % str(mindwave.get_blink_strength_value()))
         print("Meditation    : %s" % str(mindwave.get_meditation_value()))
         print("Attention     : %s\n\n" % str(mindwave.get_attention_value()))
         sleep(0.2)
+
+    # 
+    mindwave.close()
 
 if __name__ == '__main__':
     main()
