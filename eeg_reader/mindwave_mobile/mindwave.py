@@ -6,10 +6,10 @@ import time
 
 class MindwaveBluetooth:
 
-    def __init__(self, mac_addr=None):
+    def __init__(self, mac_addr=None, parser=Parser()):
         self.address = mac_addr
         self.bluetooth_socket = None
-        self.parser = Parser(record_readings=True)
+        self.parser = parser
         self.connected = False
 
         if self.address is None:
@@ -38,6 +38,8 @@ class MindwaveBluetooth:
             if name == "MindWave Mobile":
                 print("Found Mindwave Mobile at %s. Attempting to connect" % addr)
                 connect(addr)
+                if self.connected:
+                    break;
 
     def autoconnect(self):
         """Assumes that the bluetooth socket is attached to the mindwave"""
@@ -50,6 +52,7 @@ class MindwaveBluetooth:
 
     def close(self):
         self.bluetooth_socket.close()
+        self.parser.close()
 
     def update(self, byte_size=500):
         data = self.bluetooth_socket.recv(byte_size)

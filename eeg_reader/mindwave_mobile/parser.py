@@ -3,29 +3,31 @@ from time import time
 from recorders import recorders
 
 class Parser:
-    def __init__(self, record_readings=True):
+    def __init__(self, record_readings=True, recorder=recorders()):
         self.parser = self.run()
         self.parser.next()
         self.current_vector = []
         self.raw_values = []
-        self.current_meditation = 0
-        self.current_attention= 0
-        self.current_blink_strength = 0
         self.current_spectrum = []
         self.sending_data = False
         self.state ="initializing"
-        self.recorder = recorders()
+        self.recorder = recorder
 
         if record_readings:
+            self.record()
+
+    def record(self):
             self.recorder.start_raw_serial_recording()
             self.recorder.start_esense_recording()
             self.recorder.start_raw_data_recording()
 
     def parse(self, data):
-        #bytes = self.mindwaveMobileSocket.recv(1000)
         for byte in data:
             self.recorder.write_raw_serial(byte)
             self.parser.send(ord(byte))    # Send byte to the generator
+
+    def close(self):
+        self.recorder.stop_recording()
 
     def run(self):
         """

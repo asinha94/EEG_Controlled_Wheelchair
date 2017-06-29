@@ -10,15 +10,15 @@ class recorders:
         self.time_format = "----- %Y-%m-%d --- %H:%M:%S -----"
 
     def start_raw_serial_recording(self, file_name="raw_serial.out"):
-        self.raw_serial_file = open(file_name, "w")
+        self.raw_serial_file = open(file_name, "a+")
         self.raw_serial_file.write("%s\n" % time.strftime(self.time_format))
 
     def start_esense_recording(self, file_name="esense_reading.out"):
-        self.esense_file = open(file_name, "w")
+        self.esense_file = open(file_name, "a+")
         self.esense_file.write("%s\n" % time.strftime(self.time_format))
 
     def start_raw_data_recording(self, file_name="raw_data.out"):
-        self.raw_data_file = open(file_name, "w")
+        self.raw_data_file = open(file_name, "a+")
         self.raw_data_file.write("%s\n" % time.strftime(self.time_format))
 
     def stop_raw_serial_recording(self):
@@ -30,6 +30,11 @@ class recorders:
         if self.esense_file:
             self.esense_file.close()
             self.esense_file = None
+
+    def stop_recording(self):
+        self.stop_raw_serial_recording()
+        self.stop_raw_data_recording()
+        self.stop_esense_recording()
 
     def write_raw_serial(self, byte):
         if self.raw_serial_file is not None:
