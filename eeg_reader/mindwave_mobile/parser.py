@@ -12,6 +12,9 @@ class Parser:
         self.sending_data = False
         self.state ="initializing"
         self.recorder = recorder
+        self.current_blink_strength = 0
+        self.current_meditation = 0
+        self.current_attention = 0
 
         if record_readings:
             self.record()

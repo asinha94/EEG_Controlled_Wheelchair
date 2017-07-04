@@ -10,31 +10,31 @@ def getParserForMood(mood):
     recorder = recorders()
     recorder.start_raw_serial_recording(file_name="%s_raw_serial.out" % mood)
     recorder.start_raw_data_recording(file_name="%s_raw_data.out" % mood)
-    return Parser(record_readings=False, recorder)
+    return Parser(record_readings=False, recorder=recorder)
 
 
 def main():
-
+    mac_addr='A0:E6:F8:F7:B9:58'
     mindwave = mw.MindwaveBluetooth(mac_addr, parser=None)
 
     if not mindwave.connected:
         sys.exit("Couldn't connect to device connceted. Please Try again")
         # Need to wait before the device is ready for sending data
-        sleep(2)
         # Need to put the EEG into the correct mode
         #mindwave.write("\0x20")
 
-    moods = []
+    moods = ['rock']
 
     for mood in moods:
         print("%s Mood " % mood)
-        parser = getParserForMood(mood)
+        mindwave.parser = getParserForMood(mood)
         start = time()
-        sleep_time = 0.25
+        sleep_time = 0.5
         minutes = 5
         duration = minutes * 60
-        iterations = 60 / sleep_time
+        iterations = int(60 / sleep_time)
         i = 0
+
         while (time() - start) < minutes:
             try:
                 mindwave.update()
@@ -49,6 +49,7 @@ def main():
                 # before you can connect again
                 break
             else:
+                print("Recording Data")
                 i += 1
                 if i == iterations:
                     time_left_minutes = (duration - (time() -start)) / 60

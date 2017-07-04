@@ -25,30 +25,25 @@ def setupMindwave(mac_addr="A0:E6:F8:F7:B9:58"):
 
 def main():
 
-    mindwave = setupMindwave()
-
     while True:
-        try:
-            mindwave.update()
-        except BluetoothError, e:
-            print e
-            print("Sleeping. Hoping the error sorts itself out")
-            sleep(1)
-            continue
-        except KeyboardInterrupt:
-            # Only catchthing this so we can break and close properly
-            # If you dont close you might have to power cycle
-            # before you can connect again
-            break
-        else:
-            # Print all the current values
-            #print("Blink Strength: %s" % str(mindwave.get_blink_strength_value()))
-            print("----------------------")
-            print("Meditation    : %s" % str(mindwave.get_meditation_value()))
-            print("Attention     : %s" % str(mindwave.get_attention_value()))
-            sleep(0.25)
+        mindwave = setupMindwave()
+        while mindwave.connected:
+            try:
+                mindwave.update()
+            except BluetoothError, e:
+                print e
+                print("Sleeping. Hoping the error sorts itself out")
+                sleep(1)
+                break
+            else:
+                # Print all the current values
+                #print("Blink Strength: %s" % str(mindwave.get_blink_strength_value()))
+                print("----------------------")
+                print("Meditation    : %s" % str(mindwave.get_meditation_value()))
+                print("Attention     : %s" % str(mindwave.get_attention_value()))
+                sleep(0.25)
 
-    mindwave.close()
+            mindwave.close()
 
 if __name__ == '__main__':
     main()

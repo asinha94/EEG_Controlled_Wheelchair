@@ -21,6 +21,11 @@ class recorders:
         self.raw_data_file = open(file_name, "a+")
         self.raw_data_file.write("%s\n" % time.strftime(self.time_format))
 
+    def stop_raw_data_recording(self):
+        if self.raw_data_file:
+            self.raw_data_file.close()
+            self.raw_data_file = None
+
     def stop_raw_serial_recording(self):
         if self.raw_serial_file:
             self.raw_serial_file.close()
