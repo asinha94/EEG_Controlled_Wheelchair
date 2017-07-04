@@ -8,13 +8,11 @@ All the required packages can be installed through the [setup.sh](/setup.sh) fil
 
 # Libraries
 
-Currently we are still in the development and haven't decided with any one library, but some contenders are
+We are using a combination of open-source libraries
 
 - [Python MindWave](https://github.com/akloster/python-mindwave)
 
-- [MindWave Python](https://github.com/BarkleyUS/mindwave-python)
-
-- [NeuroPy](https://github.com/lihas/NeuroPy/)
+- [SciKit](www.google.com)
 
 # Code Structure
 

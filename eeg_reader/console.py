@@ -42,8 +42,7 @@ def main():
                 print("Meditation    : %s" % str(mindwave.get_meditation_value()))
                 print("Attention     : %s" % str(mindwave.get_attention_value()))
                 sleep(0.25)
-
-            mindwave.close()
-
+        mindwave.close()
+            
 if __name__ == '__main__':
     main()
