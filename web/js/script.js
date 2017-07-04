@@ -1,3 +1,11 @@
+$(document).ready(function(){
+
+
+$("#team-button").click(function() {
+    $('html, body').animate({
+        scrollTop: $("#team").offset().top
+    }, 1000);
+});
 
 
 var allowedKeys = {
@@ -38,3 +46,6 @@ document.addEventListener('keydown', function(e) {
 function activateCheats() {
   window.location = "https://www.youtube.com/embed/mwEfTCWjrg8?rel=0&autoplay=1";
 }
+
+
+});
