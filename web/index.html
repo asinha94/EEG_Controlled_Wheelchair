@@ -22,24 +22,29 @@
         <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
         <script src="js/script.js"></script>
 </head>
-<body >
+<body>
 	<div class="container-fluid">
-		<div class="row intro-block">
+		<div class="row" id="hero-block">
+			<video autoplay loop id="video-background" muted>
+				<source src="assets/video/wander.mp4" type="video/mp4"></source>
+			</video>
 			<div class="title">
 				<div class="row">
 					<div class="col-sm-12"><h1>Mind Controlled<br>Wheelchair</h1></div>
+				</div>
 			</div>
 		</div>
 
-		<div class="row buttons">
-			<div class="col-sm-1"></div>
-			<div class="col-sm-2 button" id="team-button">The Team</div>
+		<div class="row menu">
 			<div class="col-sm-2"></div>
-			<div class="col-sm-2 button">The Project</div>
-			<div class="col-sm-2"></div>
-			<div class="col-sm-2 button">ayooo</div>
+			<div class="col-sm-2 menu-button" id="team-button">The Team</div>
 			<div class="col-sm-1"></div>
+			<div class="col-sm-2 menu-button">The Project</div>
+			<div class="col-sm-1"></div>
+			<div class="col-sm-2 menu-button">mystery button</div>
+			<div class="col-sm-2"></div>
 		</div>
+
 		<div id="team">
 		<h1>The Team</h1>
 		<div class="row">

@@ -1,5 +1,5 @@
 body{
-	background-color: #ffeedd;
+	background-color: black;
 	color: #82735d;
 	font-family: 'Assistant', sans-serif;
 	text-align: center;
@@ -10,50 +10,65 @@ h1{
 	font-size: 300%;
 	margin: 20px 0;
 }
-.intro-block{
-	height: 500px;
-	background: url("../assets/img/hero.jpg");
-	background-size: cover;
+#hero-block{
+	height: 100vh;
+	display: block;
+/*	background: url("../assets/img/hero.jpg");
+	background-size: cover;*/
+	position: relative;
+}
 
+#video-background {
+	top: 0;
+	left: 0;
+	z-index: -1;
+	position: absolute;
+	height: 100%;
 }
 .title{
+	position: relative;
 	text-align: center;
 	width: 500px;
-	border: 1px solid grey;
+	border: 1px solid darkgrey;
 	border-radius: 2px;
 	display: block;
 	margin: 0 auto;
-	margin-top: 5%;
-	box-shadow: 5px 5px 5px #888888;
-}
-.buttons{
 	margin-top: 25%;
+	background-color: rgba(21, 21, 21, 0.8);
 }
-.button{
-	height: 125px;
-	border: 1px solid grey;
+.menu{
+	position: absolute;
+	top: 1%;
+	padding: 0 1%;
+	bottom: 10%;
+	width: 100%;
+}
+.menu-button{
+	position: relative;
+	height: 50px;
 	border-radius: 4px;
 	text-align: center;
 	vertical-align: middle;
-	line-height: 125px; 
-	background-color: #fde4bf;
+	line-height: 50px; 
+	background-color: rgba(21, 21, 21, 0.8);
 	transition: background-color 0.4s;
 	cursor: pointer;
 }
-.button:hover{
+.menu-button:hover{
 	color: white;
 	background-color: #3c372f;
 }
 #team{
-	margin-top: 5%;
-	padding: 1% 5%;
-	background-color: #e4e1cc;
+	width: 100%;
+	display: block;
+	background-color: rgba(31, 31, 31, 1);
 }
 #team h1{
 	margin-top: 0;
 	margin-bottom: 5%;
 }
 .team-member{
+	padding: 2%;
 	border: 1px solid #c5c4c4;
 	border-radius: 3px;
 	height: 350px;
