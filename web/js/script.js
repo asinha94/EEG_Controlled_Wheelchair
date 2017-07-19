@@ -1,5 +1,10 @@
 $(document).ready(function(){
 
+$("#project-button").click(function() {
+    $('html, body').animate({
+        scrollTop: $("#project").offset().top
+    }, 1000);
+});
 
 $("#team-button").click(function() {
     $('html, body').animate({
