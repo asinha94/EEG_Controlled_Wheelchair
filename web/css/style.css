@@ -80,15 +80,20 @@ h1{
 }
 #project{
 	background-color: #f9f9f9;		
-	padding-top: 5%;
+	padding: 3%;
+}
+#project .text{
+	opacity: 0.5;
+	animation: opacity 1s;
 }
 #team{
 	background-color: #f9f9f9;
-	padding-top: 5%;
+	padding: 3%;
 }
 #team h1{
+	padding-top: 3%;
+	border-top: 1px solid #ececec;
 	margin-top: 0;
-	margin-bottom: 5%;
 }
 .team-member{
 	padding: 2%;
@@ -111,9 +116,14 @@ h1{
 .profile-name{
 	height: 150px;
 }
+.sit-left{
+	text-align: left;
+}
+.sit-right{
+	text-align: right;
+}
 
-
-/* MEDIA QUERIES*/
+/* MEDIA QUERIES */
 @media (max-width: 767px) {
 	.title{
 		margin-top: 60%;

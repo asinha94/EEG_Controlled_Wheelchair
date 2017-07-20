@@ -12,6 +12,9 @@ $("#team-button").click(function() {
     }, 1000);
 });
 
+$("#project .text").click(function(){
+	$(this).css("opacity", "1");
+});
 
 var allowedKeys = {
   37: 'left',
