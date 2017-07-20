@@ -1,5 +1,11 @@
 $(document).ready(function(){
 
+$("#logo").click(function() {
+    $('html, body').animate({
+        scrollTop: $("#hero-block").offset().top
+    }, 1000);
+});
+
 $("#project-button").click(function() {
     $('html, body').animate({
         scrollTop: $("#project").offset().top
@@ -12,9 +18,33 @@ $("#team-button").click(function() {
     }, 1000);
 });
 
-$("#project .text").click(function(){
-	$(this).css("opacity", "1");
+
+$(window).scroll(function(){
+ 	function elementScrolled(elem)
+ 	{
+		var docViewTop = $(window).scrollTop();
+		var docViewBottom = docViewTop + $(window).height();
+		var elemTop = $(elem).offset().top;
+		return ((elemTop <= docViewBottom) && (elemTop >= docViewTop));
+	}
+	  
+	if(elementScrolled("#project")) {
+		$("#project #img1").show(1500);
+//		$("#project #img2").show(2000);
+		$("#project #img2").css("opacity", "1");
+		$("#project #text1").css("opacity", "1");
+		$("#project #text2").css("opacity", "1");
+	}
 });
+
+$("#quazi")
+	.mouseenter(function(){
+		$(this).css("background-color", "red");
+	})
+	.mouseleave(function(){
+		$(this).css("background-color", "white");
+	})
+;
 
 var allowedKeys = {
   37: 'left',

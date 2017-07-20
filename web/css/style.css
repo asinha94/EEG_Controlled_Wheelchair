@@ -6,15 +6,19 @@ body{
 	font-size: 175%;
 }
 h1{
-	font-family: 'Playfair Display', serif;
 	font-size: 300%;
+	font-weight: bold;
 	margin: 20px 0;
 }
 #hero-block{
 	height: 100vh;
 	display: block;
 	position: relative;
-	background-color: rgba(27, 27, 27, 0.6);
+	background: linear-gradient(to left, rgba(71,0,0,0.5), rgba(27,27,27,0.6));
+	background: -moz-linear-gradient(to left, rgba(71,0,0,0.5), rgba(27,27,27,0.6));
+	background: -o-linear-gradient(to ;eft, rgba(71,0,0,0.5), rgba(27,27,27,0.6));
+	background: -webkit-linear-gradient(to left, rgba(71,0,0,0.5), rgba(27,27,27,0.6));
+	/*background-color: rgba(27, 27, 27, 0.6);*/
 }
 
 #video-background {
@@ -80,12 +84,20 @@ h1{
 }
 #project{
 	background-color: #f9f9f9;		
-	padding: 3%;
+	padding: 1% 4%;
 }
-#project .text{
-	opacity: 0.5;
-	animation: opacity 1s;
+#project #text1{
+	opacity: 1;
+	transition: opacity 1.5s linear;
 }
+#project #text2, #project #img2{
+	opacity: 0;
+	transition: opacity 2s linear;
+}
+#project #img1{
+	display: none;
+}
+
 #team{
 	background-color: #f9f9f9;
 	padding: 3%;
@@ -96,12 +108,10 @@ h1{
 	margin-top: 0;
 }
 .team-member{
-	padding: 2%;
-	border: 1px solid #c5c4c4;
+	border: 1px solid #ececec;
 	border-radius: 3px;
-	height: 350px;
-	margin: 1% 5%;;	
-	max-width: 300px;
+	height: 300px;
+	max-width: 275px;
 }
 
 .profile-pic{
@@ -128,6 +138,13 @@ h1{
 	.title{
 		margin-top: 60%;
 	}	
+	.team-member{
+		max-width: none;
+	}
+	body, .sit-right, .sit-left{
+		text-align: center;
+	}
+
 }
 
 	
