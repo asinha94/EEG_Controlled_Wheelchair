@@ -1,5 +1,5 @@
 from PySide import QtGui, QtCore, QtDeclarative
-from devices import ArduinoWidget, MindwaveWidget
+from devices import DevicesPane
 import PySide
 import sys
 
@@ -10,8 +10,11 @@ class SpeedDial(QtDeclarative.QDeclarativeView):
         self.setSource(QtCore.QUrl.fromLocalFile('qml\dialcontrol.qml'))
         self.setResizeMode(QtDeclarative.QDeclarativeView.SizeRootObjectToView)
 
+    def convertVal(value):
+        return value * (5/6)
+
     def setValue(self, value):
-        self.rootObject().setProperty("value", 40)
+        self.rootObject().setProperty("value", self.convertVal(value))
 
 class SpeedDialWidget(QtGui.QWidget):
     def __init__(self, labelName):
@@ -34,6 +37,9 @@ class SpeedDialWidget(QtGui.QWidget):
 
 
 class MainWindow(QtGui.QMainWindow):
+    meditation_update_signal = QtCore.Signal(int)
+    attention_update_signal = QtCore.Signal(int)
+    blink_update_signal = QtCore.Signal(int)
     def __init__(self):
         QtGui.QMainWindow.__init__(self)
         self.initWindow()
@@ -56,17 +62,17 @@ class MainWindow(QtGui.QMainWindow):
 
     def initDials(self):
         hbox = QtGui.QHBoxLayout()
-        hbox.addWidget(SpeedDialWidget("Meditation"))
-        hbox.addWidget(SpeedDialWidget("Attention"))
-        hbox.addWidget(SpeedDialWidget("Blink Strength"))
+        self.meditation = SpeedDialWidget("Meditation")
+        self.attention = SpeedDialWidget("Attention")
+        self.blink = SpeedDialWidget("Blink Strength")
+        hbox.addWidget(self.meditation)
+        hbox.addWidget(self.attention)
+        hbox.addWidget(self.blink)
         self.vbox.addLayout(hbox)
 
     def initDevices(self):
         hbox = QtGui.QHBoxLayout()
-        arduino = ArduinoWidget('COM6')
-        eeg = MindwaveWidget()
-        hbox.addWidget(arduino)
-        hbox.addWidget(eeg)
+        hbox.addWidget(DevicesPane())
         self.vbox.addLayout(hbox)
 
     def setWidgetFormatting(self):
