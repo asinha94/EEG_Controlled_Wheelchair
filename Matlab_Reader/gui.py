@@ -1,8 +1,31 @@
 from PySide import QtGui, QtCore, QtDeclarative
-from devices import DevicesPane
+from devices import DevicesLeftPane, DevicesRightPane, ArduinoWidget, MindwaveWidget
 import PySide
 import sys
 
+class StreamWriter(QtCore.QObject):
+	attention_signal = QtCore.Signal(int)
+	meditation_signal = QtCore.Signal(int)
+	blink_signal = QtCore.Signal(int)
+	def __init__(self):
+		QtCore.QObject.__init__(self)
+		self.oldstdout = sys.stdout
+		sys.stdout = self
+
+	def write(self, data):
+		if len(data.strip()):
+			self.updateValue(data)
+
+	def updateValue(self, data):
+		param, val = data.strip().lower().split(':')
+		if param == 'attention':
+			self.attention_signal.emit(int(val))
+		elif param == 'meditation':
+			self.meditation_signal.emit(int(val))
+		elif param == 'blink':
+			self.blink_signal.emit(int(val))
+		else:
+			sys.stderr.write('Unkown Command: %s:%s' % (param, val))
 
 class SpeedDial(QtDeclarative.QDeclarativeView):
     def __init__(self):
@@ -37,14 +60,18 @@ class SpeedDialWidget(QtGui.QWidget):
 
 
 class MainWindow(QtGui.QMainWindow):
-    meditation_update_signal = QtCore.Signal(int)
-    attention_update_signal = QtCore.Signal(int)
-    blink_update_signal = QtCore.Signal(int)
     def __init__(self):
         QtGui.QMainWindow.__init__(self)
         self.initWindow()
         self.initLayout()
         self.setWidgetFormatting()
+        self.initStream()
+
+    def initStream(self):
+        self.stream = StreamWriter()
+        self.stream.attention_signal.connect(self.attention.setValue)
+        self.stream.meditation_signal.connect(self.meditation.setValue)
+        self.stream.blink_signal.connect(self.blink.setValue)
 
     def initWindow(self):
         self.setWindowTitle('EEG Command Center')
@@ -72,7 +99,10 @@ class MainWindow(QtGui.QMainWindow):
 
     def initDevices(self):
         hbox = QtGui.QHBoxLayout()
-        hbox.addWidget(DevicesPane())
+        left = DevicesLeftPane()
+        right = DevicesRightPane()
+        hbox.addWidget(left)
+        hbox.addWidget(right)
         self.vbox.addLayout(hbox)
 
     def setWidgetFormatting(self):

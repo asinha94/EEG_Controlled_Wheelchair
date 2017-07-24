@@ -1,4 +1,5 @@
 from PySide import QtCore, QtGui
+from mat import MatlabThread
 import serial
 
 class ArduinoWidget(QtGui.QWidget):
@@ -54,10 +55,10 @@ class ArduinoWidget(QtGui.QWidget):
         self.status_label.setPixmap(self.disconnected_icon)
 
     def forward(self):
-        self.connection.write('START\n')
+        self.connection.write('f\n')
 
     def stop(self):
-        self.connection.write('STOP\n')
+        self.connection.write('s\n')
 
 class MindwaveWidget(QtGui.QWidget):
     def __init__(self):
@@ -65,6 +66,15 @@ class MindwaveWidget(QtGui.QWidget):
         self.connected = False
         self.loadIcons()
         self.initLayout()
+        self.matlabThread = None
+
+    def initMatlabThread(self):
+        self.matlabThread = MatlabThread()
+        self.matlabThread.start()
+
+    def killMatlabThread(self):
+        self.matlabThread.terminate()
+        self.matlabThread = None
 
     def initLayout(self):
         # Main Label
@@ -99,21 +109,28 @@ class MindwaveWidget(QtGui.QWidget):
             self.connect()
 
     def connect(self):
+        self.initMatlabThread()
         self.status_label.setPixmap(self.connected_icon)
         self.button.setText(self.btn_disconnect_string)
         self.connected = True
 
     def disconnect(self):
+        self.killMatlabThread()
         self.status_label.setPixmap(self.disconnected_icon)
         self.button.setText(self.btn_connect_string)
         self.connected = False
         
 class DevicesLeftPane(QtGui.QWidget):
+    attention_signal = QtCore.Signal(int)
+    meditation_signal = QtCore.Signal(int)
+    blink_signal = QtCore.Signal(int)
     def __init__(self):
         QtGui.QWidget.__init__(self)
         vbox = QtGui.QVBoxLayout()
-        vbox.addWidget(ArduinoWidget('COM6'))
-        vbox.addWidget(MindwaveWidget())
+        arduino = ArduinoWidget('COM4')
+        mindwave = MindwaveWidget()
+        vbox.addWidget(arduino)
+        vbox.addWidget(mindwave)
         self.setLayout(vbox)
 
 class DevicesRightPane(QtGui.QWidget):
@@ -140,9 +157,6 @@ class DevicesRightPane(QtGui.QWidget):
         hbox_stop.addWidget(self.stop_select_label)
         # Add to main widget
         vbox = QtGui.QVBoxLayout()
-        self.button = QtGui.QPushButton('switch modes')
-        self.button.clicked.connect(self.switchModes)
-        vbox.addWidget(self.button)
         vbox.addWidget(main_label)
         vbox.addLayout(hbox_forward)
         vbox.addLayout(hbox_stop)
@@ -167,12 +181,3 @@ class DevicesRightPane(QtGui.QWidget):
             self.moving = True
             self.forward_select_label.setPixmap(self.select_icon)
             self.stop_select_label.setPixmap(None)
-
-class DevicesPane(QtGui.QWidget):
-    def __init__(self):
-        QtGui.QWidget.__init__(self)
-        self.hbox = QtGui.QHBoxLayout()
-        self.hbox.addWidget(DevicesLeftPane())
-        self.hbox.addWidget(DevicesRightPane())
-        self.setLayout(self.hbox)
-
