@@ -3,29 +3,32 @@ from devices import DevicesLeftPane, DevicesRightPane, ArduinoWidget, MindwaveWi
 import PySide
 import sys
 
+def debug(data):
+    sys.stderr.write('%s\n' % str(data))
+
 class StreamWriter(QtCore.QObject):
-	attention_signal = QtCore.Signal(int)
-	meditation_signal = QtCore.Signal(int)
-	blink_signal = QtCore.Signal(int)
-	def __init__(self):
-		QtCore.QObject.__init__(self)
-		self.oldstdout = sys.stdout
-		sys.stdout = self
+    attention_signal = QtCore.Signal(int)
+    meditation_signal = QtCore.Signal(int)
+    blink_signal = QtCore.Signal(int)
+    def __init__(self):
+        QtCore.QObject.__init__(self)
+        self.oldstdout = sys.stdout
 
-	def write(self, data):
-		if len(data.strip()):
-			self.updateValue(data)
+    def write(self, data):
+        if len(data.strip()):
+            self.updateValue(data)
 
-	def updateValue(self, data):
-		param, val = data.strip().lower().split(':')
-		if param == 'attention':
-			self.attention_signal.emit(int(val))
-		elif param == 'meditation':
-			self.meditation_signal.emit(int(val))
-		elif param == 'blink':
-			self.blink_signal.emit(int(val))
-		else:
-			sys.stderr.write('Unkown Command: %s:%s' % (param, val))
+    def updateValue(self, data):
+        param, val = data.strip().lower().split(':')
+        if param == 'attention':
+            self.attention_signal.emit(int(val))
+        elif param == 'meditation':
+            self.meditation_signal.emit(int(val))
+        elif param == 'blink':
+            self.blink_signal.emit(int(val))
+        else:
+            pass
+            #sys.stderr.write('Unkown Command: %s:%s' % (param, val))
 
 class SpeedDial(QtDeclarative.QDeclarativeView):
     def __init__(self):
@@ -33,11 +36,11 @@ class SpeedDial(QtDeclarative.QDeclarativeView):
         self.setSource(QtCore.QUrl.fromLocalFile('qml\dialcontrol.qml'))
         self.setResizeMode(QtDeclarative.QDeclarativeView.SizeRootObjectToView)
 
-    def convertVal(value):
-        return value * (5/6)
+    def convertVal(self, value):
+        return int(value * (5/6))
 
     def setValue(self, value):
-        self.rootObject().setProperty("value", self.convertVal(value))
+        self.rootObject().setProperty("value", value)
 
 class SpeedDialWidget(QtGui.QWidget):
     def __init__(self, labelName):
@@ -60,18 +63,16 @@ class SpeedDialWidget(QtGui.QWidget):
 
 
 class MainWindow(QtGui.QMainWindow):
+    forward_signal = QtCore.Signal()
+    stop_signal = QtCore.Signal()
     def __init__(self):
         QtGui.QMainWindow.__init__(self)
+        self.stream = StreamWriter()
+        sys.stdout = self.stream
         self.initWindow()
         self.initLayout()
         self.setWidgetFormatting()
         self.initStream()
-
-    def initStream(self):
-        self.stream = StreamWriter()
-        self.stream.attention_signal.connect(self.attention.setValue)
-        self.stream.meditation_signal.connect(self.meditation.setValue)
-        self.stream.blink_signal.connect(self.blink.setValue)
 
     def initWindow(self):
         self.setWindowTitle('EEG Command Center')
@@ -101,6 +102,10 @@ class MainWindow(QtGui.QMainWindow):
         hbox = QtGui.QHBoxLayout()
         left = DevicesLeftPane()
         right = DevicesRightPane()
+        self.forward_signal.connect(left.forward)
+        self.forward_signal.connect(right.forward)
+        self.stop_signal.connect(left.stop)
+        self.stop_signal.connect(right.stop)
         hbox.addWidget(left)
         hbox.addWidget(right)
         self.vbox.addLayout(hbox)
@@ -110,6 +115,26 @@ class MainWindow(QtGui.QMainWindow):
         pal.setColor(QtGui.QPalette.Background, QtGui.QColor('white'))
         self.centralWidget.setPalette(pal)
         self.centralWidget.setAutoFillBackground(True)
+
+    def initStream(self):
+        self.stream.attention_signal.connect(self.attentionHandler)
+        self.stream.meditation_signal.connect(self.meditationHandler)
+        self.stream.blink_signal.connect(self.blinkHandler)
+
+    def attentionHandler(self, val):
+        self.attention.setValue(val)
+        if val > 50:
+            self.forward_signal.emit()
+        else:
+            self.stop_signal.emit()
+
+    def meditationHandler(self, val):
+        self.meditation.setValue(val)
+
+    def blinkHandler(self, val):
+        self.blink.setValue(val)
+        if val > 60:
+            self.stop_signal.emit()
 
 if __name__ == '__main__':
     app = QtGui.QApplication(sys.argv)

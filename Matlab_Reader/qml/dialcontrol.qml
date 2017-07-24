@@ -51,7 +51,7 @@ Rectangle {
     Dial {
         id: dial
         anchors.centerIn: parent
-        value: root.value
+        value: root.value * (5/6)
     }
 
 

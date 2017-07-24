@@ -43,22 +43,24 @@ class ArduinoWidget(QtGui.QWidget):
             self.connect()
 
     def connect(self):
-        # self.connection = serial.Serial(comPort, baudrate=9600, timeout=5)
+        self.connection = serial.Serial(comPort, baudrate=9600, timeout=5)
         self.connected = True
         self.button.setText(self.btn_disconnect_string)
         self.status_label.setPixmap(self.connected_icon)
 
     def disconnect(self):
-        # self.connection.close()
+        self.connection.close()
         self.connected = False
         self.button.setText(self.btn_connect_string)
         self.status_label.setPixmap(self.disconnected_icon)
 
     def forward(self):
         self.connection.write('f\n')
+        pass
 
     def stop(self):
         self.connection.write('s\n')
+        pass
 
 class MindwaveWidget(QtGui.QWidget):
     def __init__(self):
@@ -127,11 +129,17 @@ class DevicesLeftPane(QtGui.QWidget):
     def __init__(self):
         QtGui.QWidget.__init__(self)
         vbox = QtGui.QVBoxLayout()
-        arduino = ArduinoWidget('COM4')
-        mindwave = MindwaveWidget()
-        vbox.addWidget(arduino)
-        vbox.addWidget(mindwave)
+        self.arduino = ArduinoWidget('COM4')
+        self.mindwave = MindwaveWidget()
+        vbox.addWidget(self.arduino)
+        vbox.addWidget(self.mindwave)
         self.setLayout(vbox)
+
+    def forward(self):
+        self.arduino.forward()
+
+    def stop(self):
+        self.arduino.stop()
 
 class DevicesRightPane(QtGui.QWidget):
     def __init__(self):
@@ -172,12 +180,13 @@ class DevicesRightPane(QtGui.QWidget):
         black_icon = QtGui.QPixmap('images/black.jpg')
         self.select_icon = black_icon.scaled(20, 20, QtCore.Qt.KeepAspectRatio)
 
-    def switchModes(self):
-        if self.moving:
-            self.moving = False
-            self.forward_select_label.setPixmap(None)
-            self.stop_select_label.setPixmap(self.select_icon)
-        else:
-            self.moving = True
-            self.forward_select_label.setPixmap(self.select_icon)
-            self.stop_select_label.setPixmap(None)
+    def forward(self):
+        self.moving = True
+        self.forward_select_label.setPixmap(self.select_icon)
+        self.stop_select_label.setPixmap(None)
+
+    def stop(self):
+        self.moving = False
+        self.forward_select_label.setPixmap(None)
+        self.stop_select_label.setPixmap(self.select_icon)
+        
