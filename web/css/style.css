@@ -25,6 +25,7 @@ a:hover{
 	background: -o-linear-gradient(to ;eft, rgba(71,0,0,0.5), rgba(27,27,27,0.6));
 	background: -webkit-linear-gradient(to left, rgba(71,0,0,0.5), rgba(27,27,27,0.6));
 	/*background-color: rgba(27, 27, 27, 0.6);*/
+	overflow: hidden;
 }
 
 #video-background {
@@ -199,21 +200,28 @@ a:hover{
 }
 
 /* MEDIA QUERIES */
+
+
+@media (max-width: 1156px){
+	#logo{
+		height: 100px;
+	}	
+}
 @media (max-width: 767px) {
 	.title{
-		margin-top: 60%;
+		margin-top: 70%;
 	}	
+	#logo{
+		height: 55px;
+	}
 	.team-member{
 		max-width: none;
 	}
 	body, .sit-right, .sit-left{
 		text-align: center;
 	}
-	
+	.menu{
+		padding: 0;
+		margin-top: -2%;
+	}
 }
-@media (max-width: 1156px){
-	#logo{
-		height: 100px;
-	}	
-}
-
