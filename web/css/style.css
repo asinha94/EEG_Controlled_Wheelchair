@@ -10,6 +10,12 @@ h1{
 	font-weight: bold;
 	margin: 20px 0;
 }
+a{
+	cursor: pointer;
+}
+a:hover{
+	text-decoration: none;
+}
 #hero-block{
 	height: 100vh;
 	display: block;
@@ -86,6 +92,10 @@ h1{
 	background-color: #f9f9f9;		
 	padding: 1% 4%;
 }
+#project img{
+	width: 100%;
+	height: 100%;
+}
 #project h1{
 	margin-bottom: 3%;	
 }
@@ -97,17 +107,22 @@ h1{
 	opacity: 0;
 	transition: opacity 2s linear;
 }
+#project #img2{
+}
+#project #text2{
+
+}
 #project #img1{
 	display: none;
 }
 
 #team{
-	background-color: #f9f9f9;
+	background-color: #f1f1f1;
 	padding: 3%;
+	margin-top: 2%;
 }
 #team h1{
-	padding-top: 3%;
-	border-top: 1px solid #ececec;
+	padding-top: 2%;
 	margin-top: 0;
 }
 #team img{
@@ -194,7 +209,11 @@ h1{
 	body, .sit-right, .sit-left{
 		text-align: center;
 	}
-
+	
+}
+@media (max-width: 1156px){
+	#logo{
+		height: 100px;
+	}	
 }
 
-	
