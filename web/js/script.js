@@ -1,6 +1,6 @@
 $(document).ready(function(){
 
-var imgCounter = 1;
+var imgCounter = 0;
 var direction = "down";
 $(".logo").click(function() {
     $('html, body').animate({
@@ -24,6 +24,7 @@ $(".demo-day-button").click(function() {
         scrollTop: $("#demo-day").offset().top
     }, 1000);
 });
+
 $(".citations-button").click(function() {
     $('html, body').animate({
         scrollTop: $("#citations").offset().top
@@ -124,7 +125,7 @@ $("#xiang")
 
 $("#button-left").click(function(){
 	imgCounter--;
-	if(imgCounter<1){
+	if(imgCounter<0){
 		imgCounter=5;
 	}
 	$("#img-gallery img").attr("src", "assets/img/demo"+imgCounter+".jpg");	
@@ -132,7 +133,7 @@ $("#button-left").click(function(){
 $("#button-right").click(function(){
 	imgCounter++;
 	if(imgCounter>5){
-		imgCounter=1;
+		imgCounter=0;
 	}
 	$("#img-gallery img").attr("src", "assets/img/demo"+imgCounter+".jpg");	
 });
