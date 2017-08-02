@@ -100,6 +100,10 @@ a:hover{
 	width: 100%;
 	z-index: 1;
 	transition: opacity 0.5s;
+	-moz-transition: opacity 0.5s;
+	-o-transition: opacity 0.5s;
+	-webkit-transition: opacity 0.5s;
+
 }
 .course-info{
 	margin-top: 5%;
@@ -190,7 +194,7 @@ a:hover{
 	transition: opacity: 1s;
 	-moz-transition: opacity: 1s;
 	-o-transition: opacity: 1s;
-	-webkittransition: opacity: 1s;
+	-webkit-transition: opacity: 1s;
 }
 .overlay p{
 	text-align: center;
@@ -251,7 +255,7 @@ a:hover{
 	box-shadow: 5px 5px 5px #dddddd;
 	-moz-box-shadow: 5px 5px 5px #dddddd;
 	-o-box-shadow: 5px 5px 5px #dddddd;
-	-webkitbox-shadow: 5px 5px 5px #dddddd;
+	-webkit-box-shadow: 5px 5px 5px #dddddd;
 }
 #demo-video{
 	margin-top: 5%;
