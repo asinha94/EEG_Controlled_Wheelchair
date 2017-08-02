@@ -20,9 +20,10 @@ We are using a combination of open-source libraries
 
 We are using the Neurosky MindWave Mobile and communicating via bluetooth to either a RaspberryPi or Arduino. 
 
-The Deivce MAC Address is A0:E6:F8:F7:B9:58
+The Device MAC Address is A0:E6:F8:F7:B9:58
 
 # References
 
 Course Website: http://www.ece.uvic.ca/~elec499/
+
 Project Website: http://web.uvic.ca/~trison/
