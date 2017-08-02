@@ -44,14 +44,21 @@
 		</div>
 
 		<div class="row menu">
-			<div class="col-sm-3 menu-button" id="logo">Brain Controlled Wheelchair</div>
+			<div class="col-sm-3 menu-button logo">Brain Controlled Wheelchair</div>
 			<div class="col-sm-1"></div>
-			<div class="col-sm-2 menu-button" id="project-button" style="border-right: 1px solid grey;">The Project</div>
-			<div class="col-sm-2 menu-button" id="team-button" style="border-right: 1px solid grey;">The Team</div>
-			<div class="col-sm-2 menu-button" id="demo-day-button" style="border-right: 1px solid grey;">Demo Day</div>
-			<div class="col-sm-2 menu-button" id="citations-button">Citations</div>
+			<div class="col-sm-2 menu-button project-button" style="border-right: 1px solid grey;">The Project</div>
+			<div class="col-sm-2 menu-button team-button" style="border-right: 1px solid grey;">The Team</div>
+			<div class="col-sm-2 menu-button demo-day-button" style="border-right: 1px solid grey;">Demo Day</div>
+			<div class="col-sm-2 menu-button citations-button">Citations</div>
 		</div>
-
+		<div class="row menu-fixed">
+			<div class="col-sm-3 menu-button logo">Brain Controlled Wheelchair</div>
+			<div class="col-sm-1"></div>
+			<div class="col-sm-2 col-xs-6 menu-button project-button" style="border-right: 1px solid grey;">The Project</div>
+			<div class="col-sm-2 col-xs-6 menu-button team-button" style="border-right: 1px solid grey;">The Team</div>
+			<div class="col-sm-2 col-xs-6 menu-button demo-day-button" style="border-right: 1px solid grey;">Demo Day</div>
+			<div class="col-sm-2 col-xs-6 menu-button citations-button">Citations</div>
+		</div>
 		<div class="row" id="project">
 		<div class="col-sm-4 col-sm-offset-4"><h1>The Project</h1></div>
 			<div class="row" style="margin-bottom: 7%">
@@ -76,9 +83,9 @@
 			<div class="col-sm-6 sit-left" id="text2">
 				In not being able to source a motorized wheelchair, we worked on a proof of concept with an RC car. Our EEG scanner was from <a href="http://neurosky.com/" target="_blank">NeuroSky.</a>
 
-				<br><br>The car and corresponding radio controller were disassembled and modified to work with our arduino system. The EEG scanner was able to give us data for attentiveness, meditativeness and eye blinking. 
+				<br><br>The car and corresponding radio controller were disassembled and modified to work with our arduino system. The EEG scanner gave us data for eSense(attention, meditation), signal quality, EEG band powers (delta, theta, alpha, beta, gamma), and raw EEG wave samples at 512hz. We used the corresponding data for attentiveness, meditativeness and eye blinking as action triggers for our system. 
 
-				<br><br>We developed a training algorithm to classify our data and produce diserable output with our given data. At publishing time we were able to successfully control forward moving and stopping actions through mind control.
+				<br><br>We initially worked on developing a training algorithm to classify our data. After unsuccesfull attempts, we used the ThinkGear library by NeuroSky. The ThinkGear technology on the headset is what calculates the raw brainwave and eSense values for output. At publishing time we were able to successfully control forward moving and stopping actions through mind control.
 			</div>
 			</div>
 			<div class="row" style="margin-top: 4%;"><div class="col-sm-4 col-sm-offset-4"><span style="font-style: italic">"Great"</div><br>-Dr. Li</div></div>
@@ -151,12 +158,13 @@
 			<div class="row"><div class="col-sm-4 col-sm-offset-4"><h1>Citations</h1></div></div>
 			We acknowledge the resources that guided us in developing our system:
 			<div class="sit-left">
-			<br><br>1. K. M. A. S. A. F. T. N. X. X. Quazi Rabbi, "Brain Controlled Wheelchair - Progress Report 1," Elec 499, Victoria, 2017.
+			<br><br>1. K. M. A. S. A. F. T. N. X. X. Quazi Rabbi, "Brain Controlled Wheelchair - Progress Report 1," Elec 499, Victoria, 2017
 			<br><br>2. Neurosky, "NeuroSky Developer Program," 21 05 2015. <a href="http://developer.neurosky.com/docs/doku.php?id=thinkgear_connector_tgc" target="_blank">[Online]</a>.
 			<br><br>3. Arduino Support from MATLAB, "MathWorks," <a href="https://www.mathworks.com/hardware-support/arduino-matlab.html" target="_blank">[Online]</a>. [Accessed 12 July 2017]
-			<br><br>4. MathWorks, "Classification Learner," <a href="https://www.mathworks.com/help/stats/classificationlearner-app.html">[Online]</a>. [Accessed 13 July 2017].
-			<br><br>5. NeuroSky, "eSense Meters," 06 05 2014. <a href="http://developer.neurosky.com/docs/doku.php?id=esenses_tm">[Online]</a>. [Accessed 30 July 2017].
-			<br><br>6. NeuroSky, "What is eSense?," 02 February 2011. <a href="http://support.neurosky.com/kb/science/what-is-esense.">[Online]</a> [Accessed 30 July 2017].i
+			<br><br>4. MathWorks, "Classification Learner," <a href="https://www.mathworks.com/help/stats/classificationlearner-app.html">[Online]</a>. [Accessed 13 July 2017]
+			<br><br>5. NeuroSky, "eSense Meters," 06 May 2014. <a href="http://developer.neurosky.com/docs/doku.php?id=esenses_tm">[Online]</a>. [Accessed 30 July 2017]
+			<br><br>6. NeuroSky, "What is eSense?," 02 February 2011. <a href="http://support.neurosky.com/kb/science/what-is-esense.">[Online]</a>. [Accessed 30 July 2017]
+			<br><br>7. NeuroSky, "What is ThinkGear?," 06 May 2014. <a href="http://developer.neurosky.com/docs/doku.php?id=what_is_thinkgear" target="_blank">[Online].</a>[Accessed 30 July 2017] 
 			</div>
 		</div>
 	</div><!-- container-fluid  -->

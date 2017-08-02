@@ -39,7 +39,7 @@ a:hover{
 	width: auto;
 	height: auto;
 }
-#logo{
+.logo{
 	color: #dab37a;
 	font-size: 125%;
 	border: 1px solid darkgrey;
@@ -47,7 +47,7 @@ a:hover{
 	transition: background-color 0.4s;
 	cursor: pointer;
 }
-#logo:hover{
+.logo:hover{
 	background-color: rgba(51, 71, 71, 1);
 }
 .title{
@@ -69,10 +69,10 @@ a:hover{
 	top: 1%;
 	padding: 0 1%;
 	width: 100%;
+	z-index: 2;
 }
 .menu-button{
 	position: relative;
-	height: 50px;
 	border: 1px solid black;
 	text-align: center;
 	vertical-align: middle;
@@ -85,13 +85,23 @@ a:hover{
 	color: white;
 	background-color: rgba(51, 71, 71, 1);
 }
+.menu-fixed{
+	opacity: 0;
+	color: #cecbc6;
+	position: fixed;
+	top: 0;
+	padding: 0;
+	width: 100%;
+	z-index: 1;
+	transition: opacity 0.5s;
+}
 .course-info{
 	margin-top: 5%;
 	color: white;
 }
 #project{
 	background-color: #f9f9f9;		
-	padding: 1% 4%;
+	padding: 3% 4% 1% 4%;
 }
 #project img{
 	width: 100%;
@@ -118,7 +128,7 @@ a:hover{
 
 #team{
 	background-color: #f1f1f1;
-	padding: 2% 3% 3% 3%;
+	padding: 4% 3% 3% 3%;
 	margin-top: 1%;
 }
 #team h1{
@@ -193,7 +203,7 @@ a:hover{
 	height: 150px;
 }
 #demo-day{
-	padding: 2% 5% 3% 5%;
+	padding: 4% 5% 3% 5%;
 }
 #demo-day-intro{
 }
@@ -238,7 +248,7 @@ a:hover{
 	overflow: hidden;
 }
 #citations{
-	padding: 3% 6%;
+	padding: 4% 6% 3% 6%;
 	background-color: #f1f1f1;
 }
 #citations h1{
@@ -267,8 +277,13 @@ a:hover{
 	.title{
 		margin-top: 70%;
 	}	
-	#logo{
+	.logo{
 		height: 55px;
+		display: none;
+	}
+	.menu-button{
+		height: 30px;
+		line-height: 30px;
 	}
 	.team-member{
 		max-width: none;

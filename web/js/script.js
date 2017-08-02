@@ -1,30 +1,30 @@
 $(document).ready(function(){
 
-var imgCounter=1;
-
-$("#logo").click(function() {
+var imgCounter = 1;
+var direction = "down";
+$(".logo").click(function() {
     $('html, body').animate({
         scrollTop: $("#hero-block").offset().top
     }, 1000);
 });
 
-$("#project-button").click(function() {
+$(".project-button").click(function() {
     $('html, body').animate({
         scrollTop: $("#project").offset().top
     }, 1000);
 });
 
-$("#team-button").click(function() {
+$(".team-button").click(function() {
     $('html, body').animate({
         scrollTop: $("#team").offset().top
     }, 1000);
 });
-$("#demo-day-button").click(function() {
+$(".demo-day-button").click(function() {
     $('html, body').animate({
         scrollTop: $("#demo-day").offset().top
     }, 1000);
 });
-$("#citations-button").click(function() {
+$(".citations-button").click(function() {
     $('html, body').animate({
         scrollTop: $("#citations").offset().top
     }, 1000);
@@ -38,6 +38,19 @@ $(window).scroll(function(){
 		var docViewBottom = docViewTop + $(window).height();
 		var elemTop = $(elem).offset().top;
 		return ((elemTop <= docViewBottom) && (elemTop >= docViewTop));
+	}
+	console.log(direction);	
+	if(elementScrolled("#text2")){
+		if(direction == "down"){	
+			$(".menu-fixed").css("opacity", "0.9");
+			direction = "up";
+		}
+	}
+	if(elementScrolled(".menu")){
+		if(direction == "up"){
+			$(".menu-fixed").css("opacity", "0");
+			direction = "down";
+		}
 	}
 	  
 	if(elementScrolled("#project")) {
