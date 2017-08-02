@@ -28,7 +28,7 @@ a:hover{
 	overflow: hidden;
 }
 
-#video-background {
+.video-background {
 	top: 0;
 	left: 0;
 	z-index: -1;
@@ -96,9 +96,13 @@ a:hover{
 #project img{
 	width: 100%;
 	height: 100%;
+	box-shadow: 6px 6px 5px #cccccc;
 }
 #project h1{
-	margin-bottom: 3%;	
+	margin-bottom: 5%;
+	padding-bottom: 3%; 
+	border: 1px solid #cccccc;	
+	box-shadow: 5px 5px 5px #dddddd;
 }
 #project #text1{
 	opacity: 1;
@@ -108,23 +112,20 @@ a:hover{
 	opacity: 0;
 	transition: opacity 2s linear;
 }
-#project #img2{
-}
-#project #text2{
-
-}
 #project #img1{
 	display: none;
 }
 
 #team{
 	background-color: #f1f1f1;
-	padding: 3%;
-	margin-top: 2%;
+	padding: 2% 3% 3% 3%;
+	margin-top: 1%;
 }
 #team h1{
-	padding-top: 2%;
+	padding: 1% 0;
 	margin-top: 0;
+	border: 1px solid #cccccc;
+	box-shadow: 5px 5px 5px #dddddd;
 }
 #team img{
 	border-radius: 50%;
@@ -161,7 +162,6 @@ a:hover{
 .overlay p{
 	text-align: center;
 	padding: 35% 1% 0 1%;
-
 }
 .profile-pic{
 	display: block;
@@ -192,6 +192,62 @@ a:hover{
 .profile-name{
 	height: 150px;
 }
+#demo-day{
+	padding: 2% 5% 3% 5%;
+}
+#demo-day-intro{
+}
+#img-gallery{
+	margin-top: 2%;
+}
+#img-gallery img{
+	width: 80%;
+	box-shadow: 10px 10px 10px #dddddd;
+	transition: opacity 0.2s;
+}
+#demo-day h1{
+	padding: 1% 0;
+	margin-top: 0;
+	border: 1px solid #cccccc;
+	box-shadow: 5px 5px 5px #dddddd;
+}
+#button-container{
+	position: relative;
+	display: block;
+	top: 15px;
+	margin: 0 auto;
+	width: 100px;
+	height: 25px;
+}
+#button-left, #button-right{
+	color: grey;
+	padding: 2px 0;
+	width: 45px;
+	display: block;
+	margin: 0 auto;
+	float: left;
+	transition: color 0.2;
+}
+#button-left:hover, #button-right:hover{
+	color: black;
+	cursor: pointer;
+}
+#demo-video{
+	width: 100%;
+	height: 500px;
+	overflow: hidden;
+}
+#citations{
+	padding: 3% 6%;
+	background-color: #f1f1f1;
+}
+#citations h1{
+	padding: 1% 0;
+	margin-top: 0;
+	border: 1px solid #cccccc;	
+	box-shadow: 5px 5px 5px #dddddd;
+}
+
 .sit-left{
 	text-align: left;
 }
@@ -224,4 +280,12 @@ a:hover{
 		padding: 0;
 		margin-top: -2%;
 	}
+	.overlay p{
+		padding-top: 20%;
+	}
+	#img-gallery img{
+		width: 100%;
+	}
 }
+
+

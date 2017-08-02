@@ -7,7 +7,7 @@
         <meta name="author" content="Trison Nguyen">
         <meta name="viewport" content="width=device-width,initial-scale=1">
 
-        <title>Mind Controlled Wheelchair</title>
+        <title>Brain Controlled Wheelchair</title>
 
 	<link rel="icon" type="image/x-icon" href="assets/img/favicon.ico">
 
@@ -25,7 +25,7 @@
 <body>
 	<div class="container-fluid">
 		<div class="row" id="hero-block">
-			<video autoplay loop id="video-background" muted>
+			<video autoplay loop class="video-background" muted>
 				<source src="assets/video/vid.mp4" type="video/mp4"></source>
 			</video>
 			<div class="title">
@@ -33,7 +33,7 @@
 					<div class="col-sm-12"><h1>Body and Mind. Freed.</h1></div>
 					<div class="col-sm-12">
 						<div class="course-info">
-							<span style="font-size: 150%;">Mind Controlled Wheelchair</span>
+							<span style="font-size: 150%;">Brain Controlled Wheelchair</span>
 							<br>Design Project for BME/CENG/ELEC/SENG 499
 							<br>University of Victoria Summer 2017
 							<br>Supervised by Dr. Li
@@ -44,15 +44,16 @@
 		</div>
 
 		<div class="row menu">
-			<div class="col-sm-3 menu-button" id="logo">Mind Controlled Wheelchair</div>
-			<div class="col-sm-3"></div>
+			<div class="col-sm-3 menu-button" id="logo">Brain Controlled Wheelchair</div>
+			<div class="col-sm-1"></div>
 			<div class="col-sm-2 menu-button" id="project-button" style="border-right: 1px solid grey;">The Project</div>
 			<div class="col-sm-2 menu-button" id="team-button" style="border-right: 1px solid grey;">The Team</div>
-			<div class="col-sm-2 menu-button">Mystery Button</div>
+			<div class="col-sm-2 menu-button" id="demo-day-button" style="border-right: 1px solid grey;">Demo Day</div>
+			<div class="col-sm-2 menu-button" id="citations-button">Citations</div>
 		</div>
 
 		<div class="row" id="project">
-		<h1>The Project</h1>
+		<div class="col-sm-4 col-sm-offset-4"><h1>The Project</h1></div>
 			<div class="row" style="margin-bottom: 7%">
 			<div class="col-sm-6 sit-left" id="text1">		
 				Our team is developing a hands-free wheelchair to increase accessibility for people with muscle dysfunction.
@@ -72,18 +73,19 @@
 
 			<div class="row" style="margin-top: 5%;">
 			<div class="col-sm-6 sit-left" id="img2"><img class="img-fluid" src="assets/img/car.jpg"></div>
-			<div class="cols-sm-6 sit-left" id="text2">
-				In not being able to source a motorized wheelchair, we worked on a proof of concept with an RC car. Our EEG scanner was from <a href="http://neurosky.com/">NeuroSky.</a>
+			<div class="col-sm-6 sit-left" id="text2">
+				In not being able to source a motorized wheelchair, we worked on a proof of concept with an RC car. Our EEG scanner was from <a href="http://neurosky.com/" target="_blank">NeuroSky.</a>
 
 				<br><br>The car and corresponding radio controller were disassembled and modified to work with our arduino system. The EEG scanner was able to give us data for attentiveness, meditativeness and eye blinking. 
 
 				<br><br>We developed a training algorithm to classify our data and produce diserable output with our given data. At publishing time we were able to successfully control forward moving and stopping actions through mind control.
 			</div>
 			</div>
+			<div class="row" style="margin-top: 4%;"><div class="col-sm-4 col-sm-offset-4"><span style="font-style: italic">"Great"</div><br>-Dr. Li</div></div>
 		</div>
 
 		<div class="row" id="team">
-		<h1>The Team</h1>
+		<div class="row"><div class="col-sm-4 col-sm-offset-4"><h1>The Team</h1></div></div>
 		Our system design is made possible with our talented team of engineering students
 		<div class="row" style="margin-top: 2%;">
 			<div class="col-sm-4">
@@ -132,7 +134,32 @@
 			</div>
 		</div>
 		</div>
-	</div>
+		<div class="row" id="demo-day">
+		<div class="row"><div class="col-sm-4 col-sm-offset-4"><h1>Demo Day</h1></div></div>
+		<div id="demo-day-intro">
+		We presented our proof of concept on July 27 2017 in the ELW building at the University of Victoria. Our demonstration was very successful, with many onlookers getting the opportunity to try our system and move the RC car with their brains. 
+		</div>
+		<div id="img-gallery"><img src="assets/img/demo1.jpg"></div>
+		<div id="button-container"><div class="glyphicon glyphicon-triangle-left" id="button-left"></div><div class="glyphicon glyphicon-triangle-right" id="button-right"></div></div>
+		<!-- <div class="row" id="demo-video">
+			<video autoplay loop class="video-background" muted>
+				<source src="assets/video/vid.mp4" type="video/mp4"></source>
+			</video>
+		</div>-->
+		</div><!-- demo-day-->
+		<div class="row" id="citations">
+			<div class="row"><div class="col-sm-4 col-sm-offset-4"><h1>Citations</h1></div></div>
+			We acknowledge the resources that guided us in developing our system:
+			<div class="sit-left">
+			<br><br>1. K. M. A. S. A. F. T. N. X. X. Quazi Rabbi, "Brain Controlled Wheelchair - Progress Report 1," Elec 499, Victoria, 2017.
+			<br><br>2. Neurosky, "NeuroSky Developer Program," 21 05 2015. <a href="http://developer.neurosky.com/docs/doku.php?id=thinkgear_connector_tgc" target="_blank">[Online]</a>.
+			<br><br>3. Arduino Support from MATLAB, "MathWorks," <a href="https://www.mathworks.com/hardware-support/arduino-matlab.html" target="_blank">[Online]</a>. [Accessed 12 July 2017]
+			<br><br>4. MathWorks, "Classification Learner," <a href="https://www.mathworks.com/help/stats/classificationlearner-app.html">[Online]</a>. [Accessed 13 July 2017].
+			<br><br>5. NeuroSky, "eSense Meters," 06 05 2014. <a href="http://developer.neurosky.com/docs/doku.php?id=esenses_tm">[Online]</a>. [Accessed 30 July 2017].
+			<br><br>6. NeuroSky, "What is eSense?," 02 February 2011. <a href="http://support.neurosky.com/kb/science/what-is-esense.">[Online]</a> [Accessed 30 July 2017].i
+			</div>
+		</div>
+	</div><!-- container-fluid  -->
 </body>
 </html>
 

@@ -1,5 +1,7 @@
 $(document).ready(function(){
 
+var imgCounter=1;
+
 $("#logo").click(function() {
     $('html, body').animate({
         scrollTop: $("#hero-block").offset().top
@@ -15,6 +17,16 @@ $("#project-button").click(function() {
 $("#team-button").click(function() {
     $('html, body').animate({
         scrollTop: $("#team").offset().top
+    }, 1000);
+});
+$("#demo-day-button").click(function() {
+    $('html, body').animate({
+        scrollTop: $("#demo-day").offset().top
+    }, 1000);
+});
+$("#citations-button").click(function() {
+    $('html, body').animate({
+        scrollTop: $("#citations").offset().top
     }, 1000);
 });
 
@@ -97,6 +109,20 @@ $("#xiang")
 	})
 ;
 
+$("#button-left").click(function(){
+	imgCounter--;
+	if(imgCounter<1){
+		imgCounter=5;
+	}
+	$("#img-gallery img").attr("src", "assets/img/demo"+imgCounter+".jpg");	
+});
+$("#button-right").click(function(){
+	imgCounter++;
+	if(imgCounter>5){
+		imgCounter=1;
+	}
+	$("#img-gallery img").attr("src", "assets/img/demo"+imgCounter+".jpg");	
+});
 
 var allowedKeys = {
   37: 'left',
