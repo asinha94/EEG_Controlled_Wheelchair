@@ -31,7 +31,7 @@ $(".citations-button").click(function() {
     }, 1000);
 });
 
-//element animaitons triggered by scrolling points
+//element animations triggered by scrolling points
 $(window).scroll(function(){
  	function elementScrolled(elem)
  	{
@@ -41,6 +41,17 @@ $(window).scroll(function(){
 		return ((elemTop <= docViewBottom) && (elemTop >= docViewTop));
 	}
 	console.log(direction);	
+
+	//show fixed menu earlier when on mobile
+	if ($(window).width() <= 767){
+		if(elementScrolled("#project")){
+			if(direction == "down"){	
+				$(".menu-fixed").css("opacity", "0.9");
+				direction = "up";
+			}
+		}	
+	}
+
 	if(elementScrolled("#text2")){
 		if(direction == "down"){	
 			$(".menu-fixed").css("opacity", "0.9");
