@@ -2,6 +2,7 @@ $(document).ready(function(){
 
 var imgCounter = 0;
 var direction = "down";
+
 $(".logo").click(function() {
     $('html, body').animate({
         scrollTop: $("#hero-block").offset().top
@@ -40,8 +41,6 @@ $(window).scroll(function(){
 		var elemTop = $(elem).offset().top;
 		return ((elemTop <= docViewBottom) && (elemTop >= docViewTop));
 	}
-	console.log(direction);	
-
 	//show fixed menu earlier when on mobile
 	if ($(window).width() <= 767){
 		if(elementScrolled("#project")){
@@ -51,7 +50,6 @@ $(window).scroll(function(){
 			}
 		}	
 	}
-
 	if(elementScrolled("#text2")){
 		if(direction == "down"){	
 			$(".menu-fixed").css("opacity", "0.9");
@@ -174,6 +172,6 @@ document.addEventListener('keydown', function(e) {
 });
 
 function activateCheats() {
-  window.location = "https://www.youtube.com/embed/mwEfTCWjrg8?rel=0&autoplay=1";
+  window.location = "https://www.youtube.com/embed/mmjlMgDSYFo?rel=0&autoplay=1&start=13";
 }
 });
